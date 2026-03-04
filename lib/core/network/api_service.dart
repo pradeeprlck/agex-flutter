@@ -76,6 +76,23 @@ class ApiService {
 
   Future<Response> getMyCropPrices() => _dio.get('/mandi/prices/my-crops');
 
+  Future<Response> getMandiTrends({
+    required String commodity, String? market, int days = 7,
+  }) => _dio.get('/mandi/prices/trends', queryParameters: {
+    'commodity': commodity, 'days': days,
+    if (market != null && market.isNotEmpty) 'market': market,
+  });
+
+  Future<Response> getPricePrediction({
+    required String commodity, String? market, String? state, int days = 60,
+  }) => _dio.get('/mandi/prices/predict', queryParameters: {
+    'commodity': commodity, 'days': days,
+    if (market != null && market.isNotEmpty) 'market': market,
+    if (state != null && state.isNotEmpty) 'state': state,
+  });
+
+  Future<Response> getMandiCommodities() => _dio.get('/mandi/commodities');
+
   // ── Calendar ──
   Future<Response> createCalendar(Map<String, dynamic> data) =>
       _dio.post('/calendar', data: data);
@@ -119,4 +136,27 @@ class ApiService {
 
   Future<Response> acceptAnswer(String questionId, String answerId) =>
       _dio.patch('/community/questions/$questionId/accept/$answerId');
+
+  // ── Schemes ──
+  Future<Response> listSchemes({
+    String? type, String? state, String? search, int page = 1, int limit = 20,
+  }) => _dio.get('/schemes', queryParameters: {
+    'page': page, 'limit': limit,
+    if (type != null && type.isNotEmpty) 'type': type,
+    if (state != null && state.isNotEmpty) 'state': state,
+    if (search != null && search.isNotEmpty) 'search': search,
+  });
+
+  Future<Response> getScheme(String id) => _dio.get('/schemes/$id');
+
+  Future<Response> getSchemeTypes() => _dio.get('/schemes/types');
+
+  Future<Response> getMySchemes() => _dio.get('/schemes/my-schemes');
+
+  // ── Assistant ──
+  Future<Response> askAssistant(String question, {String? language}) =>
+      _dio.post('/assistant/ask', data: {
+        'question': question,
+        if (language != null) 'language': language,
+      });
 }

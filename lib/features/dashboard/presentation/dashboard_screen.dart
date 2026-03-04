@@ -88,6 +88,7 @@ class DashboardScreen extends ConsumerWidget {
                     onMandi: () => context.push('/mandi-prices'),
                     onCalendar: () => context.push('/crop-calendars'),
                     onCommunity: () => context.go('/community'),
+                    onSchemes: () => context.push('/schemes'),
                   ),
                   const SizedBox(height: 20),
 
@@ -276,8 +277,8 @@ class _AlertsSection extends StatelessWidget {
 
 // ── Feature Grid ──
 class _FeatureGrid extends StatelessWidget {
-  final VoidCallback onSoilTest, onMandi, onCalendar, onCommunity;
-  const _FeatureGrid({required this.onSoilTest, required this.onMandi, required this.onCalendar, required this.onCommunity});
+  final VoidCallback onSoilTest, onMandi, onCalendar, onCommunity, onSchemes;
+  const _FeatureGrid({required this.onSoilTest, required this.onMandi, required this.onCalendar, required this.onCommunity, required this.onSchemes});
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +294,7 @@ class _FeatureGrid extends StatelessWidget {
         _featureTile('🏪', 'Mandi', onMandi),
         _featureTile('📅', 'Calendar', onCalendar),
         _featureTile('💬', 'Community', onCommunity),
+        _featureTile('🏛️', 'Schemes', onSchemes),
       ],
     );
   }

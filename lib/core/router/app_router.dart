@@ -19,6 +19,8 @@ import '../../features/farm_profile/presentation/farm_profile_screen.dart';
 import '../../features/crop_calendar/presentation/crop_calendar_list_screen.dart';
 import '../../features/crop_calendar/presentation/crop_calendar_screen.dart';
 import '../../features/crop_calendar/presentation/create_calendar_screen.dart';
+import '../../features/schemes/presentation/schemes_screen.dart';
+import '../../features/assistant/presentation/voice_assistant_widget.dart';
 import '../theme/app_colors.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -129,6 +131,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/farm-profile',
         builder: (context, state) => const FarmProfileScreen(),
       ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/schemes',
+        builder: (context, state) => const SchemesScreen(),
+      ),
     ],
   );
 });
@@ -158,6 +165,7 @@ class _NavShell extends StatelessWidget {
 
     return Scaffold(
       body: child,
+      floatingActionButton: const VoiceAssistantFab(),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12, offset: const Offset(0, -2))],

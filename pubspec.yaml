@@ -32,6 +32,11 @@ dependencies:
   
   # Utilities
   json_annotation: ^4.8.1
+  url_launcher: ^6.2.4
+  
+  # Voice Assistant
+  speech_to_text: ^6.6.0
+  flutter_tts: ^4.0.2
 
 dev_dependencies:
   flutter_test:
