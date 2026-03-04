@@ -4,8 +4,8 @@ class AppConstants {
 
   // API
   static const String devBaseUrl = 'http://192.168.1.100:5000/api/v1';
-  static const String prodBaseUrl = 'https://api.agriexpert.com/api/v1';
-  static const String baseUrl = devBaseUrl;
+  static const String prodBaseUrl = 'https://agex-server.onrender.com/api/v1';
+  static const String baseUrl = prodBaseUrl;
 
   // Crop options
   static const List<String> cropOptions = [
