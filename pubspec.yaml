@@ -27,7 +27,7 @@ dependencies:
   # UI & Assets
   google_fonts: ^6.1.0
   cached_network_image: ^3.3.1
-  lucide_icons: ^0.3.0
+  lucide_icons: ^0.257.0
   intl: ^0.19.0
   
   # Utilities
@@ -35,7 +35,7 @@ dependencies:
   url_launcher: ^6.2.4
   
   # Voice Assistant
-  speech_to_text: ^6.6.0
+  speech_to_text: ^7.3.0
   flutter_tts: ^4.0.2
 
 dev_dependencies:
