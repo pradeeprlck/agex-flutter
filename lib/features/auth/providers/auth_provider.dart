@@ -1,7 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import '../../../core/network/api_client.dart';
 import '../../../core/network/api_service.dart';
+
+part 'auth_provider.g.dart';
 
 class AuthState {
   final Map<String, dynamic>? user;
@@ -23,12 +27,17 @@ class AuthState {
   String get phone => user?['phone']?.toString() ?? '';
 }
 
-class AuthNotifier extends StateNotifier<AuthState> {
-  final ApiService _api;
-  final FlutterSecureStorage _storage;
+@Riverpod(keepAlive: true)
+class Auth extends _$Auth {
+  late final ApiService _api;
+  late final FlutterSecureStorage _storage;
 
-  AuthNotifier(this._api, this._storage) : super(const AuthState(isLoading: true)) {
+  @override
+  AuthState build() {
+    _api = ref.watch(apiServiceProvider);
+    _storage = ref.watch(secureStorageProvider);
     _init();
+    return const AuthState(isLoading: true);
   }
 
   Future<void> _init() async {
@@ -84,9 +93,4 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 }
 
-final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  return AuthNotifier(
-    ref.read(apiServiceProvider),
-    ref.read(secureStorageProvider),
-  );
-});
+final secureStorageProvider = Provider<FlutterSecureStorage>((ref) => const FlutterSecureStorage());
